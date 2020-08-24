@@ -8,8 +8,13 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-       <h1 style="text-align: center;"> พัฒนาเว็บแอปพลิเคชั่นด้วย python flask</h1>
-        
+       <h1 style="text-align: center;"> พัฒนาเว็บแอปพลิเคชั่นด้วย python flask </h1>
+        {% for row in data %}
+        <p>{{row.0}}</p>
+        <p>{{row.1}}</p>
+        <p>{{row.2}}</p>
+        <p>{{row.3}}</p>
+        {% endfor %}    
         <script src="" async defer></script>
     </body>
 </html>

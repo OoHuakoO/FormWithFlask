@@ -1,14 +1,15 @@
 from flask import Flask , render_template
-import pymysql
+import pymysql as sql
 app = Flask(__name__)
-con = pymysql.connect('localhost','root','','studentdb')
+conn = sql.connect(host='localhost',user='root',passwd='',db='studentdb')
+print(conn)
 @app.route("/")
 def hello():
-    with con:
-        cur = con.cursor()
-        cur.execute("SELECT * FROM student")
-        rows = cur.fetchAll()
-        return render_template('index.html',data=age)
+      with conn:
+         cur = conn.cursor()
+         cur.execute("select * from student WHERE 1")
+         rows = cur.fetchall()
+         return render_template('index.html',data=rows)
 
 if __name__ == "__main__":
     app.run(debug=True)
