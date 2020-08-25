@@ -32,7 +32,8 @@
             <td>{{row.3}}</td>
             <td>
               <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="">Edit</a>
-              <a href="" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a>
+              <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a>
+            </td>
             </td>
           </tr>
             {% endfor %}

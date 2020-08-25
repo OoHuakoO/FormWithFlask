@@ -5,8 +5,7 @@ conn = sql.connect(host='localhost',user='root',passwd='',db='studentdb')
 print(conn)
 @app.route("/")
 def showData():
-    if(conn) : 
-         cur = conn.cursor()
+    with conn.cursor() as cur : 
          cur.execute("SELECT * FROM `student` WHERE 1")
          rows = cur.fetchall()
          return render_template('index.html',data=rows)
@@ -25,7 +24,15 @@ def insert():
             sql = "Insert into `student` (`fname`,`lname`,`phone`) values(%s,%s,%s)"
             cursor.execute(sql,(fname,lname,phone))
             conn.commit()
-        return redirect(url_for('showData'))
+            return redirect(url_for('showData'))
+
+@app.route("/delete/<string:id_data>",methods=['GET'])
+def delete(id_data):
+    with conn.cursor() as cur : 
+         cur.execute("delete from student where id=%s",(id_data))
+         conn.commit()
+         return redirect(url_for('showData'))
+
 if __name__ == "__main__":
     app.run(debug=True)
     
